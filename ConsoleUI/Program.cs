@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
 
@@ -7,6 +8,17 @@ namespace ConsoleUI
     internal class Program
     {
         private static void Main(string[] args)
+        {
+            // InmemoryCardal();
+            CarManager carManager = new CarManager(new EfCar());
+            
+
+
+           
+            Console.ReadLine();
+        }
+
+        static void InmemoryCardal()
         {
             CarManager carManager = new CarManager(new InMemoryCarDal());
 
@@ -28,9 +40,9 @@ namespace ConsoleUI
             {
                 Console.WriteLine(color.ColorName);
             }
-
-
-            Console.ReadLine();
         }
+
+
+
     }
 }

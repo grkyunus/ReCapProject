@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,38 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
+        public void Add(Color color)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                _colorDal.Add(color);
+            }
+        }
+
+        public void Delete(Color color)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                _colorDal.Delete(color);
+            }
+        }
+
         public List<Color> GetAll()
         {
             return _colorDal.GetAll();
+        }
+
+        public List<Color> GetById(int colorId)
+        {
+            return _colorDal.GetAll(c => c.ColorId == colorId).ToList();
+        }
+
+        public void Update(Color color)
+        {
+            using (ReCapProjectContext context = new ReCapProjectContext())
+            {
+                _colorDal.Update(color);
+            }
         }
     }
 }
