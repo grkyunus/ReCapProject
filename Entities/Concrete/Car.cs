@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public int BrandId { get; set; }  // Marka kimliği
         public int ColorId { get; set; } // Renk Kimliği
         public int ModelYear { get; set; }  // Model Yılı 
-        public double DailyPrice  { get; set; }  // Günlük Fiyat
+        public decimal DailyPrice  { get; set; }  // Günlük Fiyat
         public string Description { get; set; }  // Açıklama
     }
 }
