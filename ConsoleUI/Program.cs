@@ -11,8 +11,49 @@ namespace ConsoleUI
         private static void Main(string[] args)
         {
             // InmemoryCardal();
+            //CarTest1(carManager);
             CarManager carManager = new CarManager(new EfCar());
+            ColorManager colorManager = new ColorManager(new EfColor());
+            //clAdd(colorManager);
+            //clDelete(colorManager);
+            //clUpdate(colorManager);
+            // clGetAll(colorManager);
 
+
+
+
+
+            Console.ReadLine();
+        }
+
+        private static void clGetAll(ColorManager colorManager)
+        {
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine("{0} --- {1}", color.ColorId,color.ColorName);
+            }
+        }
+
+        private static void clUpdate(ColorManager colorManager)
+        {
+            colorManager.Update(new Color { ColorId = 9, ColorName = "Gray == Gri" });
+        }
+
+        private static void clDelete(ColorManager colorManager)
+        {
+            colorManager.Delete(new Color { ColorId = 3, ColorName = "to be deleted == silinecek" });
+        }
+
+        private static void clAdd(ColorManager colorManager)
+        {
+            colorManager.Add(new Color { ColorName = "White == Beyaz" });
+            colorManager.Add(new Color { ColorName = "Red == Kırmızı" });
+            colorManager.Add(new Color { ColorName = "test == test" });
+        }
+
+        private static void CarTest1()
+        {
+            CarManager carManager = new CarManager(new EfCar());
             Car carToAdd = new Car
             {
                 BrandId = 1,
@@ -37,17 +78,13 @@ namespace ConsoleUI
 
             // Araba Silme Testi
 
-             carManager.Delete(new Car{ CarId=3 });
+            carManager.Delete(new Car { CarId = 3 });
 
-            // Araba Listeleme Testi
-            var cars = carManager.GetAll();
-            foreach (var car in cars)
+            // Araba Listeleme Testi         
+            foreach (var car in carManager.GetAll())
             {
                 Console.WriteLine("{0} - {1} - {2}", car.CarId, car.Description, car.DailyPrice);
             }
-
-
-            Console.ReadLine();
         }
 
         static void InmemoryCardal()
