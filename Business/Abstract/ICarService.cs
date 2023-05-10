@@ -13,6 +13,7 @@ namespace Business.Abstract
         List<Car> GetAll(); // Araçları çeker.
         List<Car> GetCarsByBrandId(int brandId);
         List<Car> GetCarsByColorId(int colorId);
+        List<Car> GetById(int carId);
         List<CarDetailDto> GetCarDetails();
         void Add(Car car);
         void Update(Car car);

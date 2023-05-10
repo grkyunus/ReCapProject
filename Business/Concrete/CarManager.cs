@@ -50,6 +50,11 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
+        public List<Car> GetById(int carId)
+        {
+            return _carDal.GetAll(c => c.CarId == carId).ToList();
+        }
+
         public List<CarDetailDto> GetCarDetails()
         {
             return _carDal.GetCarDetails();

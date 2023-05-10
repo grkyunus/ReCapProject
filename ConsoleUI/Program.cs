@@ -25,31 +25,37 @@ namespace ConsoleUI
 
             #endregion
 
-            #region Car
-
-            //CarManager carManager = new CarManager(new EfCar());
-            //crAdd(carManager);
-            //crDelete(carManager);
-            //crUpdate(carManager);
-
-
-
-            #endregion
 
             #region Brand
 
             BrandManager brandManager = new BrandManager(new EfBrand());
             //brAdd(brandManager);
-            //brDelete(brandManager);
-            brUpdate(brandManager, 2);
+            //brDelete(brandManager,2);
+            //brUpdate(brandManager, 2);
+            //brGetAll(brandManager);
+            //brGetId(brandManager,2);
+
+            #endregion
+
+            #region Car
+
+            CarManager carManager = new CarManager(new EfCar());
+            //crAdd(carManager);
+            //crDelete(carManager);
+            //crUpdate(carManager);
+            //crGetByBrandId(carManager,1);
+            //crGetByColorId(carManager,2);
+            //crGetById(carManager,5);
+            //crGetCarDetail(carManager);
+            //ctGetAll(carManager);
 
             #endregion
 
 
 
+
             Console.ReadLine();
         }
-
 
 
 
@@ -117,7 +123,8 @@ namespace ConsoleUI
 
         #endregion
 
-        #region Color Test || yukarının kodu tert olarak aşşağıdan yukarıya doğru uymaktadır.
+        #region Color Test
+        // yukarının kodu tert olarak aşşağıdan yukarıya doğru uymaktadır.
 
         private static void clGetId(ColorManager colorManager, int X)
         {
@@ -146,9 +153,9 @@ namespace ConsoleUI
         private static void clUpdate(ColorManager colorManager, int X)
         {
             var colorToUpdateId = colorManager.GetById(X);
-            
-            
-            if (colorToUpdateId.Count == X)
+
+
+            if (colorToUpdateId.Count > 0)
             {
                 colorManager.Update(new Color { ColorId = X, ColorName = "Gray == Gri" });
             }
@@ -172,33 +179,36 @@ namespace ConsoleUI
 
         #endregion
 
-        #region Car Test
-
-
-        private static void crUpdate(CarManager carManager)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void crDelete(CarManager carManager)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void crAdd(CarManager carManager)
-        {
-            carManager.Add(new Car { BrandId = 1, ColorId = 1, ModelYear = 20 });
-        }
-
-
-        #endregion
 
         #region Brand Test
+
+        private static void brGetId(BrandManager brandManager,int X)
+        {
+            if (brandManager.GetById(X).Any())
+            {
+                foreach (var brand in brandManager.GetById(X))
+                {
+                    Console.WriteLine("{0} --- {1}", brand.BrandId, brand.BrandName);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+        }
+
+        private static void brGetAll(BrandManager brandManager)
+        {
+            foreach (var brand in brandManager.GetAll())
+            {
+                Console.WriteLine("{0} --- {1}", brand.BrandId,brand.BrandName);
+            }
+        }
 
         private static void brUpdate(BrandManager brandManager, int X)
         {
             var brandToUpdateId = brandManager.GetById(X);
-            if ()
+            if (brandToUpdateId.Count > 0)
             {
                 brandManager.Update(new Brand { BrandId = X, BrandName = "Audi" });
                 Console.WriteLine("İstenilen işlem gerçekleştirildi.\n İyi günler dileriz.");
@@ -210,10 +220,19 @@ namespace ConsoleUI
 
         }
 
-        private static void brDelete(BrandManager brandManager)
+        private static void brDelete(BrandManager brandManager,int X)
         {
-            brandManager.Delete(new Brand { BrandId = 2 });
-            Console.WriteLine("Silme işlemi gerçekleştirildi.");
+            var brandToDeleteId = brandManager.GetById(X);
+            if (brandToDeleteId.Count>0)
+            {
+                brandManager.Delete(new Brand { BrandId = X });
+                Console.WriteLine("Silme işlemi gerçekleştirildi.");
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+
         }
 
         private static void brAdd(BrandManager brandManager)
@@ -225,6 +244,105 @@ namespace ConsoleUI
 
         #endregion
 
+        #region    Car Test
+
+        private static void ctGetAll(CarManager carManager)
+        {
+            foreach (var cars in carManager.GetAll())
+            {
+                Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4}", cars.CarId, cars.BrandId ,cars.ColorId, cars.DailyPrice, cars.Description);
+            }
+        }
+
+        private static void crGetCarDetail(CarManager carManager)
+        {
+            carManager = new CarManager(new EfCar());
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4}",car.CarId,car.BrandName,car.ColorName,car.DailyPrice,car.Description);
+            }
+        }
+
+        private static void crGetById(CarManager carManager,int X)
+        {
+            if (carManager.GetById(X).Any())
+            {
+                foreach (var cars in carManager.GetById(X))
+                {
+                    Console.WriteLine("{0} --- {1} --- {2} --- {3}", cars.CarId, cars.ColorId, cars.DailyPrice, cars.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+        }
+
+        private static void crGetByColorId(CarManager carManager,int X)
+        {
+            if (carManager.GetCarsByColorId(X).Any())
+            {
+                foreach (var cars in carManager.GetCarsByColorId(X))
+                {
+                    Console.WriteLine("{0} --- {1} --- {2} --- {3}", cars.CarId, cars.ColorId, cars.DailyPrice, cars.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+        }
+
+        private static void crGetByBrandId(CarManager carManager,int X)
+        {
+            if (carManager.GetCarsByBrandId(X).Any())
+            {
+                foreach (var cars in carManager.GetCarsByBrandId(X))
+                {
+                    Console.WriteLine("{0} --- {1} --- {2} --- {3}", cars.CarId,cars.ColorId,cars.DailyPrice,cars.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+        }
+
+        private static void crUpdate(CarManager carManager,int X)
+        {
+            var carUpdateId = carManager.GetById(X);
+            if (carUpdateId.Count > 0)
+            {
+                carManager.Update(new Car { CarId = X, BrandId =3, ColorId=1, DailyPrice = 4500, ModelYear = 2000, Description= "Araç güncellemesi çalıştı." });
+                Console.WriteLine("İstenilen işlem gerçekleştirildi.\n İyi günler dileriz.");
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+        }
+
+        private static void crDelete(CarManager carManager,int X)
+        {
+            var carDeleteId = carManager.GetById(X);
+            if (carDeleteId.Count >0)
+            {
+                carManager.Delete(new Car { CarId = X });
+                Console.WriteLine("Silme işlemi gerçekleştirildi.");
+            }
+            else
+            {
+                Console.WriteLine("Aranılan Id bulunamadı.");
+            }
+        }
+
+        private static void crAdd(CarManager carManager)
+        {
+            carManager.Add(new Car { BrandId = 6, ColorId = 9, ModelYear = 2016, DailyPrice = 3800, Description = "Yeni Araç Eklendi." });
+        }
+
+
+        #endregion
 
 
 
