@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -19,38 +22,44 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
-            using (ReCapProjectContext context = new ReCapProjectContext())
+            if (color != null)
             {
                 _colorDal.Add(color);
+                return new SuccessResult(Messages.Process);
             }
+            return new ErrorResult(Messages.ProcessError);
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
-            using (ReCapProjectContext context = new ReCapProjectContext())
+            if (color != null)
             {
                 _colorDal.Delete(color);
+                return new SuccessResult(Messages.Process);
             }
+            return new ErrorResult(Messages.ProcessError);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.Process);
         }
 
-        public List<Color> GetById(int colorId)
+        public IDataResult<Color> GetById(int colorId)
         {
-            return _colorDal.GetAll(c => c.ColorId == colorId).ToList();
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId),Messages.Process);
         }
 
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
-            using (ReCapProjectContext context = new ReCapProjectContext())
+            if (color != null)
             {
                 _colorDal.Update(color);
+                return new SuccessResult(Messages.Process);
             }
+            return new ErrorResult(Messages.ProcessError);
         }
     }
 }
