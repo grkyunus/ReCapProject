@@ -46,8 +46,8 @@ namespace ConsoleUI
             //crGetByBrandId(carManager, 1);
             //crGetByColorId(carManager, 2);
             //crGetById(carManager, 5);
-            //crGetCarDetail(carManager);
-            ctGetAll(carManager);
+            crGetCarDetail(carManager);
+            //ctGetAll(carManager);
 
             #endregion
 
@@ -246,20 +246,27 @@ namespace ConsoleUI
 
         #region CarTest
 
-        private static void ctGetAll(CarManager carManager)
-        {
-            foreach (var cars in carManager.GetAll().Data)
-            {
-                Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4}", cars.CarId, cars.BrandId, cars.ColorId, cars.DailyPrice, cars.Description);
-            }
-        }
+        //private static void ctGetAll(CarManager carManager)
+        //{
+        //    foreach (var cars in carManager.GetAll().Data)
+        //    {
+        //        Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4}", cars.CarId, cars.BrandId, cars.ColorId, cars.DailyPrice, cars.Description);
+        //    }
+        //}
 
         private static void crGetCarDetail(CarManager carmanager)
         {
-            //carmanager = new carmanager(new EfCar());
-            foreach (var car in carmanager.GetCarDetails().Data)
+            var result = carmanager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4}", car.CarId, car.BrandName, car.ColorName, car.DailyPrice, car.Description);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4}", car.CarId, car.BrandName, car.ColorName, car.DailyPrice, car.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
 
