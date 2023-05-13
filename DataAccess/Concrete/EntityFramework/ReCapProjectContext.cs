@@ -18,6 +18,11 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Brand> Rcp_Brand { get; set; }
         public DbSet<Color> Rcp_Color { get; set; }
         public DbSet<Car> Rcp_Car { get; set; }
+        public DbSet<User> Rcp_Users { get; set; }
+        public DbSet<Customer> Rcp_Customers { get; set; }
+        public DbSet<Rental> Rcp_Rentals { get; set; }
+
+
 
 
     }

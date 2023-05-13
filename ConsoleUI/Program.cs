@@ -25,7 +25,6 @@ namespace ConsoleUI
 
             #endregion
 
-
             #region Brand
 
             BrandManager brandManager = new BrandManager(new EfBrand());
@@ -46,10 +45,12 @@ namespace ConsoleUI
             //crGetByBrandId(carManager, 1);
             //crGetByColorId(carManager, 2);
             //crGetById(carManager, 5);
-            crGetCarDetail(carManager);
+            //crGetCarDetail(carManager);
             //ctGetAll(carManager);
 
             #endregion
+
+            //UserTest();
 
 
 
@@ -178,72 +179,7 @@ namespace ConsoleUI
         //}
 
         #endregion
-
-
-        #region Brand Test
-
-        //private static void brGetId(BrandManager brandManager,int X)
-        //{
-        //    if (brandManager.GetById(X).Any())
-        //    {
-        //        foreach (var brand in brandManager.GetById(X))
-        //        {
-        //            Console.WriteLine("{0} --- {1}", brand.BrandId, brand.BrandName);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Aranılan Id bulunamadı.");
-        //    }
-        //}
-
-        //private static void brGetAll(BrandManager brandManager)
-        //{
-        //    foreach (var brand in brandManager.GetAll())
-        //    {
-        //        Console.WriteLine("{0} --- {1}", brand.BrandId,brand.BrandName);
-        //    }
-        //}
-
-        //private static void brUpdate(BrandManager brandManager, int X)
-        //{
-        //    var brandToUpdateId = brandManager.GetById(X);
-        //    if (brandToUpdateId.Count > 0)
-        //    {
-        //        brandManager.Update(new Brand { BrandId = X, BrandName = "Audi" });
-        //        Console.WriteLine("İstenilen işlem gerçekleştirildi.\n İyi günler dileriz.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Aranılan Id bulunamadı.");
-        //    }
-
-        //}
-
-        //private static void brDelete(BrandManager brandManager,int X)
-        //{
-        //    var brandToDeleteId = brandManager.GetById(X);
-        //    if (brandToDeleteId.Count>0)
-        //    {
-        //        brandManager.Delete(new Brand { BrandId = X });
-        //        Console.WriteLine("Silme işlemi gerçekleştirildi.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Aranılan Id bulunamadı.");
-        //    }
-
-        //}
-
-        //private static void brAdd(BrandManager brandManager)
-        //{
-        //    brandManager.Add(new Brand { BrandName = "Audiy" });
-        //    brandManager.Add(new Brand { BrandName = "Bmw" });
-        //    brandManager.Add(new Brand { BrandName = "Ford" });
-        //}
-
-        #endregion
-
+       
         #region CarTest
 
         //private static void ctGetAll(CarManager carManager)
@@ -343,11 +279,101 @@ namespace ConsoleUI
         //    }
         //}
 
-        //private static void crAdd(CarManager carManager)
+        private static void crAdd(CarManager carManager)
+        {
+            carManager.Add(new Car { BrandId = 6, ColorId = 9, ModelYear = 2016, DailyPrice = 3800, Description = "Yeni Araç Eklendi." });
+        }
+
+        #endregion
+
+        #region Brand Test
+
+        //private static void brGetId(BrandManager brandManager,int X)
         //{
-        //    carManager.Add(new Car { BrandId = 6, ColorId = 9, ModelYear = 2016, DailyPrice = 3800, Description = "Yeni Araç Eklendi." });
+        //    if (brandManager.GetById(X).Any())
+        //    {
+        //        foreach (var brand in brandManager.GetById(X))
+        //        {
+        //            Console.WriteLine("{0} --- {1}", brand.BrandId, brand.BrandName);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Aranılan Id bulunamadı.");
+        //    }
         //}
 
+        //private static void brGetAll(BrandManager brandManager)
+        //{
+        //    foreach (var brand in brandManager.GetAll())
+        //    {
+        //        Console.WriteLine("{0} --- {1}", brand.BrandId,brand.BrandName);
+        //    }
+        //}
+
+        //private static void brUpdate(BrandManager brandManager, int X)
+        //{
+        //    var brandToUpdateId = brandManager.GetById(X);
+        //    if (brandToUpdateId.Count > 0)
+        //    {
+        //        brandManager.Update(new Brand { BrandId = X, BrandName = "Audi" });
+        //        Console.WriteLine("İstenilen işlem gerçekleştirildi.\n İyi günler dileriz.");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Aranılan Id bulunamadı.");
+        //    }
+
+        //}
+
+        //private static void brDelete(BrandManager brandManager,int X)
+        //{
+        //    var brandToDeleteId = brandManager.GetById(X);
+        //    if (brandToDeleteId.Count>0)
+        //    {
+        //        brandManager.Delete(new Brand { BrandId = X });
+        //        Console.WriteLine("Silme işlemi gerçekleştirildi.");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Aranılan Id bulunamadı.");
+        //    }
+
+        //}
+
+        //private static void brAdd(BrandManager brandManager)
+        //{
+        //    brandManager.Add(new Brand { BrandName = "Audiy" });
+        //    brandManager.Add(new Brand { BrandName = "Bmw" });
+        //    brandManager.Add(new Brand { BrandName = "Ford" });
+        //}
+
+        #endregion
+
+
+        #region User test
+
+        private static void UserTest()
+        {
+            User user = new User { FirstName = "Yunus", LastName = "Koçak", Email = "yns@gmail.com", Password = "123456yns" };
+            UserManager userManager = new UserManager(new EfUser());
+            userManager.Add(user);
+            foreach(var users in userManager.GetAll().Data)
+            {
+                Console.WriteLine(users.FirstName);
+            }
+        }
+
+        #endregion
+
+        #region Customer Test
+
+        class CustomerTest
+        {
+
+
+
+        }
 
         #endregion
 

@@ -33,22 +33,32 @@ namespace Business.Concrete
 
         public IResult Delete(User user)
         {
-            throw new NotImplementedException();
+            if (user != null)
+            {
+                _userDal.Delete(user);
+                return new SuccessResult(Messages.Process);
+            }
+            return new ErrorResult(Messages.ProcessError);
         }
 
         public IDataResult<List<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.Process);
         }
 
         public IDataResult<User> GetById(int userId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId), Messages.Process);
         }
 
         public IResult Update(User user)
         {
-            throw new NotImplementedException();
+            if (user != null)
+            {
+                _userDal.Update(user);
+                return new SuccessResult(Messages.Process);
+            }
+            return new ErrorResult(Messages.ProcessError);
         }
     }
 }
