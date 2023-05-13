@@ -52,8 +52,9 @@ namespace ConsoleUI
 
             //UserTest();
 
+            //CustomerTest();
 
-
+            RentalTest();
 
             Console.ReadLine();
         }
@@ -368,16 +369,33 @@ namespace ConsoleUI
 
         #region Customer Test
 
-        class CustomerTest
+        private static void CustomerTest()
         {
-
-
-
+            Customer customer = new Customer { UserId = 1, CompanyName = "Grk Soft" };
+            CustomerManager customerManager = new CustomerManager(new EfCustomer());
+            customerManager.Add(customer);
+            foreach (var customerr in customerManager.GetAll().Data)
+            {
+                Console.WriteLine(customerr.UserId);
+            }
         }
 
         #endregion
 
+        #region RentalTest
 
+        private static void RentalTest()
+        {
+            Rental rental = new Rental { CustomerId = 1, CarId = 2, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(6)};
+            RentalManager rentalManager = new RentalManager(new EfRental());
+            rentalManager.Add(rental);
+            foreach (var rentall in rentalManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} {1} {2}",rentall.Id, rentall.CarId,rentall.ReturnDate);
+            }
+        }
+
+        #endregion
 
     }
 }
