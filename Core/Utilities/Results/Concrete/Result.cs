@@ -11,9 +11,9 @@ namespace Core.Utilities.Results.Concrete
     public class Result : IResult
     {
 
-        public Result(bool success,string message) 
+        public Result(bool success,string message) : this (success)
         {
-            Message = message;
+            Message = message;           
             // bool değer koymamamızın sebebi alt contructorde bulunması.
         }
 
