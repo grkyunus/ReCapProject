@@ -54,7 +54,7 @@ namespace ConsoleUI
 
             //CustomerTest();
 
-            RentalTest();
+            // RentalTest();
 
             Console.ReadLine();
         }
@@ -386,13 +386,28 @@ namespace ConsoleUI
 
         private static void RentalTest()
         {
-            Rental rental = new Rental { CustomerId = 1, CarId = 2, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(6)};
+            Rental rental = new Rental { CustomerId = 1, CarId = 3, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(10) };
             RentalManager rentalManager = new RentalManager(new EfRental());
             rentalManager.Add(rental);
             foreach (var rentall in rentalManager.GetAll().Data)
             {
-                Console.WriteLine("{0} {1} {2}",rentall.Id, rentall.CarId,rentall.ReturnDate);
+                Console.WriteLine("{0} {1} {2}", rentall.Id, rentall.CarId, rentall.ReturnDate);
             }
+
+            // çalışmıyor sebebi sonra bakılacak !!!
+            //var result = rentalManager.GetRentalDetails();
+            //if (result.Success == true)
+            //{
+            //    foreach (var rentals in result.Data)
+            //    {
+            //        Console.WriteLine("{0} --- {1} --- {2} --- {3} --- {4} --- {5}",rentals.Id,rentals.BrandName,rentals.CompanyName,rentals.RentDate,rentals.ReturnDate,rentals.DailyPrice);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine(result.Message);
+            //}
+
         }
 
         #endregion
