@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class BrandManager : IBrandService
+      class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
 
@@ -51,7 +51,7 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetById(int brandId)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == brandId),Messages.Process);
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == brandId),Messages.Process);
         }
 
         public IResult Update(Brand brand)

@@ -3,7 +3,6 @@ using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,50 +12,50 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ColorManager : IColorService
+    public class CustomerManager : ICustomerService
     {
-        IColorDal _colorDal;
+        ICustomerDal _customerDal;
 
-        public ColorManager(IColorDal colorDal)
+        public CustomerManager(ICustomerDal customerDal)
         {
-            _colorDal = colorDal;
+            _customerDal = customerDal;
         }
 
-        public IResult Add(Color color)
+        public IResult Add(Customer customer)
         {
-            if (color != null)
+            if (customer != null)
             {
-                _colorDal.Add(color);
+                _customerDal.Add(customer);
                 return new SuccessResult(Messages.Process);
             }
             return new ErrorResult(Messages.ProcessError);
         }
 
-        public IResult Delete(Color color)
+        public IResult Delete(Customer customer)
         {
-            if (color != null)
+            if (customer != null)
             {
-                _colorDal.Delete(color);
+                _customerDal.Delete(customer);
                 return new SuccessResult(Messages.Process);
             }
             return new ErrorResult(Messages.ProcessError);
         }
 
-        public IDataResult<List<Color>> GetAll()
+        public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.Process);
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.Process);
         }
 
-        public IDataResult<Color> GetById(int colorId)
+        public IDataResult<Customer> GetById(int customerId)
         {
-            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId),Messages.Process);
+            return new SuccessDataResult<Customer>(_customerDal.Get(c=>c.Id == customerId),Messages.Process);
         }
 
-        public IResult Update(Color color)
+        public IResult Update(Customer customer)
         {
-            if (color != null)
+            if (customer != null)
             {
-                _colorDal.Update(color);
+                _customerDal.Update(customer);
                 return new SuccessResult(Messages.Process);
             }
             return new ErrorResult(Messages.ProcessError);

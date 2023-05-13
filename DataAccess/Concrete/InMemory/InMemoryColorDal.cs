@@ -18,10 +18,10 @@ namespace DataAccess.Concrete.InMemory
         {
             _colors = new List<Color>()
             {
-                new Color{ ColorId = 1, ColorName = "Beyaz"},
-                new Color{ ColorId = 2, ColorName = "Siyah"},
-                new Color{ ColorId = 3, ColorName = "Gri"},
-                new Color{ ColorId = 4, ColorName = "Mavi"},
+                new Color{ Id = 1, ColorName = "Beyaz"},
+                new Color{ Id = 2, ColorName = "Siyah"},
+                new Color{ Id = 3, ColorName = "Gri"},
+                new Color{ Id = 4, ColorName = "Mavi"},
             };
         }
 
@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.InMemory
         // Silme Kısmı
         public void Delete(Color color)
         {
-            Color colorToDelete = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
+            Color colorToDelete = _colors.SingleOrDefault(c => c.Id == color.Id);
             _colors.Remove(colorToDelete);
         }
 
@@ -57,13 +57,13 @@ namespace DataAccess.Concrete.InMemory
         // Sorgulama
         public List<Color> GetById(int colorId)
         {
-            return _colors.Where(c => c.ColorId == colorId).ToList();
+            return _colors.Where(c => c.Id == colorId).ToList();
         }
 
         // Renk Güncelleme
         public void Update(Color color)
         {
-            Color colorToUpdate = _colors.SingleOrDefault(c => c.ColorId == color.ColorId);
+            Color colorToUpdate = _colors.SingleOrDefault(c => c.Id == color.Id);
             colorToUpdate.ColorName = color.ColorName;
         }
     }

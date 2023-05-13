@@ -10,7 +10,7 @@ namespace Entities.Concrete
     // Rental : Kiralama
     public class Rental : IEntity
     {
-        public int RentalID { get; set; }
+        public int Id { get; set; }
         public int CarId { get; set; }
         public int CustomerId { get; set; }
         public DateTime RentDate { get; set; }

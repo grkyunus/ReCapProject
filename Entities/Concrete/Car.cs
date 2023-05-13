@@ -10,7 +10,7 @@ namespace Entities.Concrete
     // Araç İçin istenilen sistme özellikleri.
     public class Car : IEntity
     {
-        public int CarId { get; set; } // Araç Kimliği
+        public int Id { get; set; } // Araç Kimliği
         public int BrandId { get; set; }  // Marka kimliği
         public int ColorId { get; set; } // Renk Kimliği
         public int ModelYear { get; set; }  // Model Yılı 
