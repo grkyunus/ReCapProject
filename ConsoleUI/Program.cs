@@ -16,7 +16,7 @@ namespace ConsoleUI
 
             #region Color
 
-            ColorManager colorManager = new ColorManager(new EfColor());
+            ColorManager colorManager = new ColorManager(new EfColorDal());
             //clAdd(colorManager);
             //clDelete(colorManager);
             //clUpdate(colorManager);
@@ -27,7 +27,7 @@ namespace ConsoleUI
 
             #region Brand
 
-            BrandManager brandManager = new BrandManager(new EfBrand());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
             //brAdd(brandManager);
             //brDelete(brandManager,2);
             //brUpdate(brandManager, 2);
@@ -38,7 +38,7 @@ namespace ConsoleUI
 
             #region Car
 
-            CarManager carManager = new CarManager(new EfCar());
+            CarManager carManager = new CarManager(new EfCarDal());
             //crAdd(carManager);
             //crDelete(carManager);
             //crUpdate(carManager);
@@ -357,7 +357,7 @@ namespace ConsoleUI
         private static void UserTest()
         {
             User user = new User { FirstName = "Yunus", LastName = "Koçak", Email = "yns@gmail.com", Password = "123456yns" };
-            UserManager userManager = new UserManager(new EfUser());
+            UserManager userManager = new UserManager(new EfUserDal());
             userManager.Add(user);
             foreach(var users in userManager.GetAll().Data)
             {
@@ -372,7 +372,7 @@ namespace ConsoleUI
         private static void CustomerTest()
         {
             Customer customer = new Customer { UserId = 1, CompanyName = "Grk Soft" };
-            CustomerManager customerManager = new CustomerManager(new EfCustomer());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
             customerManager.Add(customer);
             foreach (var customerr in customerManager.GetAll().Data)
             {
@@ -387,7 +387,7 @@ namespace ConsoleUI
         private static void RentalTest()
         {
             Rental rental = new Rental { CustomerId = 1, CarId = 3, RentDate = DateTime.Now, ReturnDate = DateTime.Now.AddDays(10) };
-            RentalManager rentalManager = new RentalManager(new EfRental());
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
             rentalManager.Add(rental);
             foreach (var rentall in rentalManager.GetAll().Data)
             {
