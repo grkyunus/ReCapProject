@@ -16,4 +16,6 @@ namespace Business.Constants
         public static string Process = "İşlem gerçekleştirildi";
         public static string ProcessError = "İşlem hatası";
     }
+
+
 }

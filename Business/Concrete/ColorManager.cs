@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -22,14 +24,12 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
+        [ValidationAspect(typeof(ColorValidator))]
+
         public IResult Add(Color color)
         {
-            if (color != null)
-            {
-                _colorDal.Add(color);
-                return new SuccessResult(Messages.Process);
-            }
-            return new ErrorResult(Messages.ProcessError);
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.Process);
         }
 
         public IResult Delete(Color color)
@@ -44,12 +44,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.Process);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.Process);
         }
 
         public IDataResult<Color> GetById(int colorId)
         {
-            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId),Messages.Process);
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == colorId), Messages.Process);
         }
 
         public IResult Update(Color color)

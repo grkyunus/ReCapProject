@@ -1,9 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +25,11 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
-            if (user != null)
-            {
-                _userDal.Add(user);
-                return new SuccessResult(Messages.Process);
-            }
-            return new ErrorResult(Messages.ProcessError);
+            _userDal.Add(user);
+            return new SuccessResult(Messages.Process);
         }
 
         public IResult Delete(User user)
