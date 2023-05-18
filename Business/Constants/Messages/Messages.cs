@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Constants
+namespace Business.Constants.Messages
 {
     // static verilirse new kuralına gerek yoktur ve bu durum içinde gerekli değildir.
     public static class Messages
