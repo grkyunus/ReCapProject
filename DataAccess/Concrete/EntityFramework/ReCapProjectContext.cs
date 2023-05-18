@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<User> Rcp_Users { get; set; }
         public DbSet<Customer> Rcp_Customers { get; set; }
         public DbSet<Rental> Rcp_Rentals { get; set; }
-
+        public DbSet<Image> Rcp_Images { get; set; }
 
 
 
