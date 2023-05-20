@@ -30,6 +30,7 @@ namespace Core.Utilities.Helpers.FileHelper
 
         public string Upload(IFormFile file, string root)
         {
+            
             if (file.Length > 0)
             {
                 if (!Directory.Exists(root))
@@ -40,8 +41,9 @@ namespace Core.Utilities.Helpers.FileHelper
                 string extension = Path.GetExtension(file.FileName);
                 string guid = GuidHelpers.CreatGuid();
                 string filePath = guid + extension;
+                string fullFilePath = Path.Combine(root, filePath);
 
-                using (FileStream fileStream = File.Create(root + filePath))
+                using (FileStream fileStream = File.Create(fullFilePath))
                 {
                     file.CopyTo(fileStream);
                     fileStream.Flush();
@@ -49,6 +51,7 @@ namespace Core.Utilities.Helpers.FileHelper
                     return filePath;
                 }
             }
+
             return null;
         }
     }
