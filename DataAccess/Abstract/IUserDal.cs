@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess;
-using Entities.Concrete;
+using Core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IUserDal : IEntityRepository<User>
     {
-
+        // Kullanıcının sahip olduğu claim için || join işlemi için.
+        List<OperationClaim> GetClaims(User user);
     }
 }

@@ -3,10 +3,10 @@ using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using Entities.Concrete;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -50,6 +50,16 @@ namespace Business.Concrete
         public IDataResult<User> GetById(int userId)
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId), Messages.Process);
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
         public IResult Update(User user)

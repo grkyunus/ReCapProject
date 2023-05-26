@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +19,8 @@ namespace WebAPI.Controller
         }
 
         [HttpGet("getall")]
+        // [SecuredOperation("car.list,admin")]
+        //[Authorize(Roles = "admin")]
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();

@@ -5,6 +5,7 @@ using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.Jwt;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using System;
@@ -44,6 +45,10 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<ImageManager>().As<IImageService>().SingleInstance();
             builder.RegisterType<EfImageDal>().As<IImageDal>().SingleInstance();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
+           
 
             #endregion
 
