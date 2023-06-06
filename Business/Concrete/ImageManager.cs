@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers.FileHelper;
@@ -26,6 +27,7 @@ namespace Business.Concrete
             _fileHelper = fileHelper;
         }
 
+        [SecuredOperation("car.add,admin")]
         public IResult Add(IFormFile file, Image image)
         {
             IResult result = BusinessRules.Run(CheckIfCarImageLimit(image.CarId));

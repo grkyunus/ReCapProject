@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
+    // Color = Araç renkleri 
     public class Color : IEntity
     {
         public int Id { get; set; }

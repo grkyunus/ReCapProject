@@ -19,7 +19,6 @@ namespace WebAPI.Controller
         }
 
         [HttpGet("getall")]
-        // [SecuredOperation("car.list,admin")]
         //[Authorize(Roles = "admin")]
         public IActionResult GetAll()
         {

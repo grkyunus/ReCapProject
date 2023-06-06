@@ -60,6 +60,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = SecurityKeyHelpler.CreateSecurityKey(tokenOptions.SecurityKey)
         };
     });
+// Buraya farklý eklemeler yapýlabilir bunun için bu sistem oluþturuldu.
 builder.Services.AddDependencyResolvers(new ICoreModule[]
 {
     new CoreModule()
