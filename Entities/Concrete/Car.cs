@@ -13,6 +13,7 @@ namespace Entities.Concrete
         public int Id { get; set; } // Araç Kimliği
         public int BrandId { get; set; }  // Marka kimliği
         public int ColorId { get; set; } // Renk Kimliği
+        public string Model { get; set; } // model ismi
         public int ModelYear { get; set; }  // Model Yılı 
         public decimal DailyPrice  { get; set; }  // Günlük Fiyat
         public string Description { get; set; }  // Açıklama

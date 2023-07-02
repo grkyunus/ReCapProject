@@ -26,6 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  CarId = c.Id, BrandName = b.BrandName, ColorName = cl.ColorName,
                                  DailyPrice = c.DailyPrice, Description = c.Description,
+                                 Model = c.Model, ModelYear = c.ModelYear,
                                  ImagePath = (from m in context.Rcp_Images where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
