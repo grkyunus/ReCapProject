@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  Id = r.Id,
                                  CarId = c.Id,
                                  BrandName = b.BrandName,
-                                 FullName = user.FirstName,
+                                 FullName = $"{ user.FirstName} { user.LastName }",
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate
                              };
