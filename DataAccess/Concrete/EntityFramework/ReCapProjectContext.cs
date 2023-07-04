@@ -16,15 +16,15 @@ namespace DataAccess.Concrete.EntityFramework
             optionsBuilder.UseSqlServer(@"Server=COMPUTER1\SQLEXPRESS;Database=ReCapProject;Trusted_Connection=true;TrustServerCertificate=true");
         }
 
-        public DbSet<Brand> Rcp_Brand { get; set; }
-        public DbSet<Color> Rcp_Color { get; set; }
-        public DbSet<Car> Rcp_Car { get; set; }
-        public DbSet<User> Rcp_Users { get; set; }
-        public DbSet<Customer> Rcp_Customers { get; set; }
-        public DbSet<Rental> Rcp_Rentals { get; set; }
-        public DbSet<Image> Rcp_Images { get; set; }
-        public DbSet<OperationClaim> Rcp_OperationClaims { get; set; }
-        public DbSet<UserOperationClaim> Rcp_UserOperationClaims { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
 
     }

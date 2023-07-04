@@ -55,7 +55,8 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
+            var result =_rentalDal.GetRentalDetails();
+            return new SuccessDataResult<List<RentalDetailDto>>(result);
         }
 
         public IResult Update(Rental rental)

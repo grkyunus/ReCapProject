@@ -19,15 +19,15 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapProjectContext context = new ReCapProjectContext())
             {
 
-                var result = from c in context.Rcp_Car
-                             join b in context.Rcp_Brand on c.BrandId equals b.Id
-                             join cl in context.Rcp_Color on c.ColorId equals cl.Id
+                var result = from c in context.Cars
+                             join b in context.Brands on c.BrandId equals b.Id
+                             join cl in context.Colors on c.ColorId equals cl.Id
                              select new CarDetailDto
                              {
                                  CarId = c.Id, BrandName = b.BrandName, ColorName = cl.ColorName,
                                  DailyPrice = c.DailyPrice, Description = c.Description,
                                  Model = c.Model, ModelYear = c.ModelYear,
-                                 ImagePath = (from m in context.Rcp_Images where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
+                                 ImagePath = (from m in context.Images where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
             }
